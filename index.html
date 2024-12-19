@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-mode">
+    <div class="dashboard">
+        <header>
+            <div class="logo">
+                <i class="fas fa-hashtag"></i>
+                <span>SocialDash</span>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-actions">
+                <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </div>
+                <div class="profile">
+                    <img src="image/profile.jpeg" height="40" width="40" alt="Profile Picture">
+                </div>
+                <button id="mobile-menu-toggle" class="mobile-only"><i class="fas fa-bars"></i></button>
+            </div>
+        </header>
+        
+        <nav class="sidebar">
+            <ul>
+                <li data-section="home" class="active"><i class="fas fa-home"></i> Home</li>
+                <li data-section="messages"><i class="fas fa-envelope"></i> Messages <span class="unread-count">2</span></li>
+                <li data-section="analytics"><i class="fas fa-chart-bar"></i> Analytics</li>
+                <li data-section="friends"><i class="fas fa-users"></i> Friends</li>
+                <li data-section="settings"><i class="fas fa-cog"></i> Settings</li>
+                <li><i class="fas fa-sign-out-alt"></i> Log Out</li>
+            </ul>
+        </nav>
+        
+        <main>
+            <section id="home" class="active-section">
+                <section class="overview">
+                    <h2>Overview</h2>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <h3>Posts</h3>
+                            <p>1,234</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Likes</h3>
+                            <p>45.6K</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Followers</h3>
+                            <p>7,890</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="analytics">
+                    <h2>Engagement Trends</h2>
+                    <canvas id="engagementChart"></canvas>
+                </section>
+                
+                <section class="activity-feed">
+                    <h2>Recent Activity</h2>
+                    <ul id="activity-list"></ul>
+                </section>
+                
+                <section class="post-creator">
+                    <h2>Create a Post</h2>
+                    <textarea placeholder="What's on your mind?"></textarea>
+                    <div class="post-actions">
+                        <button><i class="fas fa-image"></i> Image</button>
+                        <button><i class="fas fa-video"></i> Video</button>
+                        <button class="post-btn">Post</button>
+                    </div>
+                </section>
+            </section>
+
+            <section id="messages" class="hidden-section">
+                <h2>Messages</h2>
+                <div class="message-list"></div>
+                <div class="message-composer">
+                    <textarea placeholder="Type a message..."></textarea>
+                    <button id="send-message">Send</button>
+                </div>
+            </section>
+
+            <section id="analytics" class="hidden-section">
+                <h2>Analytics</h2>
+                <div class="chart-container">
+                    <canvas id="followerGrowthChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="postPerformanceChart"></canvas>
+                </div>
+            </section>
+
+            <section id="friends" class="hidden-section">
+                <h2>Friends</h2>
+                <div class="friend-list"></div>
+                <button id="load-more-friends">Load More</button>
+            </section>
+
+            <section id="settings" class="hidden-section">
+                <h2>Settings</h2>
+                <form id="settings-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="notification-preference">Notification Preference</label>
+                        <select id="notification-preference" name="notification-preference">
+                            <option value="all">All Notifications</option>
+                            <option value="important">Important Only</option>
+                            <option value="none">None</option>
+                        </select>
+                    </div>
+                    <button type="submit">Save Changes</button>
+                </form>
+            </section>
+        </main>
+        
+        <aside class="right-sidebar">
+            <section class="friend-suggestions">
+                <h2>Suggested Friends</h2>
+                <ul id="suggested-friends"></ul>
+            </section>
+            
+            <section class="trending">
+                <h2>Trending Topics</h2>
+                <ul id="trending-topics">
+                    <li>#TechNews</li><li>#SocialMedia</li><li>#WebDev</li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+    
+    <footer>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact Support</a>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="chart.js"></script>
+</body>
+</html>
